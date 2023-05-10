@@ -43,10 +43,20 @@
 
 	const marker = L.marker([51.5, -0.09]).addTo(map)
 		.bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
+	
+	fetch ("cycling-network.geojson")
+	.then(function(response) {
+		return response.json ();
+	});
+	.then(function(data)) {
+	      L. geoJSON(data).addTo(map);
+	});
+	
+	L.geoJSON("cycling-network.geojson").addTo(map)
 
 	const circle = L.circle([51.508, -0.11], {
 		color: 'red',
-		fillColor: '#f03',
+		fillColor: '#f10',
 		fillOpacity: 0.5,
 		radius: 500
 	}).addTo(map).bindPopup('I am a circle.');
@@ -93,21 +103,6 @@
 }, {
     "type": "LineString",
     "coordinates": [[-105, 40], [-110, 45], [-115, 55]]
-}];
-
-var myStyle = {
-    "color": "#ff7800",
-    "weight": 5,
-    "opacity": 0.65
-};
-
-L.geoJSON(myLines, {
-    style: myStyle
-}).addTo(map);
-
-        "type": "Point",
-        "coordinates": [-104.99404, 39.75621]
-    }
 };
 
 </script>
